@@ -1,4 +1,5 @@
 *
 !*.cpp
+t.cpp
 !*.ps1
 !.gitignore
