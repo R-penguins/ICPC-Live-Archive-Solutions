@@ -1,3 +1,7 @@
+/**
+ * Hy-phe-na-tion Rulez
+ * ICPC 2014 Mid-Atlantic
+ */
 #include <bits/stdc++.h>
 using namespace std;
 string tl(const string str)
