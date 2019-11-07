@@ -43,10 +43,10 @@ int main()
       else
       {
         ans.push_back(rawWord);
-        ans.push_back(" ");
-        if (haiku[haikuLine] == 0)
+        if (haiku[haikuLine] > 0)
+          ans.push_back(" ");
+        else
         {
-          ans.pop_back();
           ans.push_back("\n");
           ++haikuLine;
         }
