@@ -3,5 +3,5 @@
 t.cpp
 !*.ps1
 !.gitignore
-!.tex
-!.pdf
+!*.tex
+!*.pdf

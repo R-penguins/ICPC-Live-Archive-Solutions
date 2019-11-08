@@ -1,0 +1,107 @@
+\documentclass[10pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{times}
+\setlength{\parindent}{0pt}
+\usepackage{amsmath}
+\usepackage{multicol}
+\usepackage{listings}
+\lstset{numbers=left,
+        numbersep=10pt,
+        language=C++,
+        basicstyle=\ttfamily
+}
+\begin{document}
+    \section*{Math}
+    \subsection*{Number Theory}
+    GCD: $O(lg(n))$
+    \begin{lstlisting}
+int gcd(int a, int b)
+{
+    return b == 0 ? a : gcd(b, a % b);
+}
+    \end{lstlisting}
+    \bigskip
+
+    Extended GCD for Bezout coefficients $a\cdot x + b\cdot y = GCD(a, b)$
+    \begin{lstlisting}
+int gcdE(int a, int b, int &x, int &y)
+{
+    if (b == 0)
+    {
+        x = 1;
+        y = 0;
+        return a;
+    }
+    int ans = gcdE(b, a % b, y, x);
+    y -= x * (a / b);
+    return ans;
+}
+\end{lstlisting}
+
+    Solve $a\cdot x + b\cdot y = c$
+    
+    $x = x_0\cdot c / GCD(a, b)$, $y = y_0\cdot c / GCD(a, b)$, where $x_0, y_0$ are Bezout coefficients.
+
+    $(x + k\cdot b', y + k\cdot a')$, where $a' = a/GCD(a, b)$, $b' = b/GCD(a, b)$
+    \bigskip
+
+    LCM
+    \begin{lstlisting}
+int lcm(int a, int b)
+{
+    return a / gcd(a, b) * b;
+}
+    \end{lstlisting}
+    \bigskip
+
+    Eratosthenes: $O(\frac{n}{ln(n)})$
+    \begin{lstlisting}
+int n;
+vector<bool> prime(n + 1, true);
+for (int i = 2; i <= sqrt(n + 0.5); ++i)
+    if (prime[i])  
+        for (int j = i * i; j <= n; j += i)
+            prime[j] = false;
+    \end{lstlisting}
+    \bigskip
+
+    Modulo of a big integer
+    \begin{lstlisting}
+int m;
+string bigint;
+long long ans = 0;
+for (char c : bigint)
+    ans = (ans * 10 + c - '0') % m;
+    \end{lstlisting}
+    \bigskip
+
+    Modulo of power (divide and conquer)
+    \begin{lstlisting}
+int pow_mod(int a, int n, int m)
+{
+    if (n == 0)
+        return 1;
+    long long ans = pow_mod(a, n / 2, m);
+    ans = ans * ans % m;
+    if (n % 2)
+        ans = ans * a % m;
+    return ans;
+}
+    \end{lstlisting}
+    \bigskip
+
+    Solve $a\cdot x \equiv b (mod\; n)$
+
+    $\iff a\cdot x - n\cdot k = b$
+
+    \newpage
+    \section*{Computational Geometry}
+    Co-linear: cross = 0
+
+    Parallel: dot = 0
+
+    Line: $P_0 + t\cdot v$ or $P_A + t\cdot (P_B - P_A)$
+
+    \lstinputlisting{2Dgeometry.cpp}
+\end{document}
