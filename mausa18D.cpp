@@ -14,7 +14,6 @@ int main()
 {
     regex r("\\s*\\(\\s*(\\d*)\\s*,\\s*(\\d*)\\s*\\)\\s*,\\s*\\(\\s*(\\d*)\\s*,\\s*(\\d*)\\s*\\)\\s*;");
     string line;
-    map<Pt, vector<Pt>> con;
     while (getline(cin, line))
         for (sregex_iterator it(line.begin(), line.end(), r), end_it; it != end_it; ++it)
         {
